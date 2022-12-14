@@ -40,14 +40,14 @@ h1 {
     flex: 4;
 }
 
-.products {
+.pictures {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     justify-content: space-around;
 }
 
-.product {
+.picture {
     width: 300px;
     display: flex;
     flex-direction: column;
