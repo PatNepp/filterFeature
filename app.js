@@ -132,11 +132,15 @@ const showCategories = () => {
         `
     }).join('')
 
-    // catContainer.innerHTML = data.map((item, index) => {
-    //     return `
-    //         <span class="cat">${item.cats}</span>
-    //     `
-    // }).join('')
+    catContainer.addEventListener('click', (e) => {
+        const category = e.target.textContent.toLowerCase()
+        const filteredProducts = data.filter(product => 
+            product.cats.toLowerCase() === category
+        )
+        
+        category === 'all' ? displayProducts(data) : displayProducts(filteredProducts)
+    })
+
 }
 
 showCategories()
