@@ -88,7 +88,7 @@ const data = [
 const picturesContainer = document.querySelector('.pictures')
 const searchInput = document.querySelector('.search')
 const catContainer = document.querySelector('.cats')
-const months = document.querySelector('.months')
+const months = document.querySelector('.month')
 const month = document.querySelector('.rangeMonth')
 
 
@@ -133,14 +133,35 @@ const showCategories = () => {
     }).join('')
 
     catContainer.addEventListener('click', (e) => {
-        const category = e.target.textContent.toLowerCase()
+        const category = e.target.textContent
         const filteredProducts = data.filter(product => 
-            product.cats.toLowerCase() === category
+            product.cats === category
         )
         
-        category === 'all' ? displayProducts(data) : displayProducts(filteredProducts)
+        category === 'All' ? displayProducts(data) : displayProducts(filteredProducts)
     })
+}
 
+const setMonths = () => {
+    const allMonthsLong = data.map(item => item.date)
+
+    const allMonths = ['All', ...allMonthsLong.filter((item, i) => {
+        return allMonthsLong.indexOf(item) === i
+    }).reverse()]
+
+    months.innerHTML = allMonths.map((month) => {
+        return `
+            <span class="cat">${month}</span>
+        `
+    }).join('')
+
+    months.addEventListener('click', (e) => {
+        const date = e.target.textContent
+        const filteredProducts = data.filter(item => item.date === date)
+
+        date === 'All' ? displayProducts(data) : displayProducts(filteredProducts)
+    })
 }
 
 showCategories()
+setMonths()
